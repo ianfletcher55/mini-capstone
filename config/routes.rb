@@ -1,13 +1,15 @@
 Rails.application.routes.draw do
 
   namespace :api do
-    get "/products" => "products#all_products_action"
+    get "/products" => "products#index"
 
-    get "/guitar_strings" => "products#get_guitar_strings"
+    get "/products/show/:id" => "products#show"
 
-    get "/guitar_case" => "products#get_guitar_case"
+    post "/products" => "products#create"
 
-    get "/jazzmaster_guitar" => "products#get_jazzmaster_guitar"
+    patch "/products/:id" => "products#update"
+
+    delete "/products/:id" => "products#destroy"
 
   end
 

@@ -1,23 +1,42 @@
 class Api::ProductsController < ApplicationController
 
-  def all_products_action
-    @all_products = Product.all
-    render json: @all_products
+  def index
+    @products = Product.all
+    render 'index.json.jb'
   end
 
-  def get_guitar_strings
-    @guitar_strings = Product.find_by(id: 1)
-    render json: @guitar_strings
+  def show
+    @products = Product.all
+    @product_query = params["id"]
+    @product = @products.find_by(id: @product_query)
+    render 'show.json.jb'
   end
 
-  def get_guitar_case
-    @guitar_case = Product.find_by(id: 2)
-    render json: @guitar_case
+  def create
+    @product = Product.new(
+      name: params[:name],
+      price: params[:price],
+      image_url: params[:image_url],
+      description: params[:description]
+    )
+    @product.save
+    render 'show.json.jb'
   end
 
-  def get_jazzmaster_guitar
-    @jazzmaster_guitar = Product.find_by(id: 3)
-    render json: @jazzmaster_guitar
+  def update
+    @product = Product.find_by(id: params[:id])
+    @product.name = params[:name] || @product.name
+    @product.price = params[:price] || @product.price
+    @product.image_url = params[:image_url] || @product.image_url
+    @product.description = params[:description] || @product.description
+    @product.save
+    render 'show.json.jb'
+  end
+
+  def destroy
+    @product = Product.find_by(id: params[:id])
+    @product.destroy
+    render json: {message: "Product has been deleted."}
   end
 
 end
