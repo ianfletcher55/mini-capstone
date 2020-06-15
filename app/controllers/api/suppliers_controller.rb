@@ -1,7 +1,7 @@
 class Api::SuppliersController < ApplicationController
 
   def index
-    @suppliers = @suppliers.order(:id)
+    #@suppliers = @suppliers.order(:id)
     render 'index.json.jb'
   end
 
