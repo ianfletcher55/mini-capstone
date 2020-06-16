@@ -1,7 +1,6 @@
 {
   id: product.id,
   name: product.name,
-  categories: product.category_names,
   price: product.price,
   description: product.description,
   discounted: product.is_discounted?,
