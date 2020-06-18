@@ -1,0 +1,10 @@
+<h2><%= @product.name %></h2>
+<% if @product.images.any? %>
+  <img src="<%= @product.images[0].url %>" width=300>
+<% end %>
+<h4>Price: <%= number_to_currency(@product.price) %></h4>
+<h4>Description: <%= @product.description%></h4>
+<h4>Stock: <%= @product.stock %></h4>
+
+<a href="/products">All Products</a>
+<a href="/products/<%= @product.id %>/edit">Edit Product</a>

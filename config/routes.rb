@@ -1,5 +1,15 @@
 Rails.application.routes.draw do
 
+  get "/products" => "products#index"
+
+  get "/products/new" => "products#new"
+
+  get "/products/:id" => "products#show"
+
+  get "/products/:id/edit" => "products#edit"
+
+  post "/products" => "products#create"
+
   namespace :api do
     get "/products" => "products#index"
 
