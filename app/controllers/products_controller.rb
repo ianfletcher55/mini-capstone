@@ -25,6 +25,26 @@ class ProductsController < ApplicationController
     render "edit.html.erb"
   end
 
+  def update
+    @product = Product.find(params[:id])
+    @product.name = params[:name]
+    @product.price = params[:price]
+    @product.description = params[:description]
+    @product.supplier_id = params[:supplier_id]
+    @product.save
+    redirect_to "/products/#{@product.id}"
+    # else
+    #   render json: { errors: @product.errors.full_messages }, status: :unprocessable_entity
+    # end
+    
+  end
+
+  def destroy
+    @product = Product.find(params[:id])
+    @product.destroy
+    redirect_to "/products"
+  end
+
   def show
     @product = Product.find(params[:id])
     render "show.html.erb"
